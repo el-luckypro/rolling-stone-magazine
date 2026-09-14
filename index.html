@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rolling Stone Magazine</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- garden photo backdrop for the main site -->
+    <div class="garden-photo"></div>
+
+    <!-- welcome screen -->
+    <div id="welcome">
+      <h1 class="welcome-mark">Rolling Stone Magazine</h1>
+      <p class="welcome-kicker">
+        LIFESTYLE &middot; FAITH &middot; INSPIRATION
+      </p>
+      <p class="welcome-tagline">Welcome to my website</p>
+          
+    
+        <img src="lucky.png" height="400px" width="400px" sizes="200px"
+        style="border-radius: 200px;"
+        >
+      <p cHRISTY MURI BOBBY style="font-size: larger;">CHRISTY MURI BOBBY</p>
+      
+      <button class="rainbow-btn" id="enterButton"
+      style="color: blue;"
+      >explore</button>
+    
+     
+    </div>
+    <!-- main site -->
+    <main>
+      <header class="masthead">
+        <h1>Rolling Stone Magazine</h1>
+        <p>Faith, community, and stories worth sharing</p>
+        <div class="divider"></div>
+      </header>
+
+      <nav class="sections">
+        <button class="rainbow-btn nav-btn active" data-section="about">
+          About
+        </button>
+        <button class="rainbow-btn nav-btn" data-section="contact">
+          Contact
+        </button>
+        <button class="rainbow-btn nav-btn" data-section="magazine">
+          Magazine
+        </button>
+        <button class="rainbow-btn nav-btn" data-section="subscription">
+          Subscription
+      </nav>
+
+      <article id="articleBody">
+        <!-- About / Contact text renders here -->
+        <div id="articleText">
+          <h2 class="content-heading">About This Magazine</h2>
+          <p>
+            Rolling Stone Magazine is a space where faith meets everyday life.
+            Here, stories, reflections, and honest encouragement come together
+            to help you navigate life's seasons with hope, purpose, and grace.
+          </p>
+        </div>
+
+        <!-- Magazine section: chapters + donation -->
+        <div id="magazineSection" style="display: none">
+          <nav class="chapters">
+            <button  class="rainbow-btn chapter-btn"onclick="someFunction">
+              1st EDITION
+              <img src="page-02.jpg" width="700px" height="1000px">
+              <img src="page-03.jpg" width="700px" height="1000px">
+              <img src="page-04.jpg" width="700px" height="1000px">
+              <img src="page-05.jpg" width="700px" height="1000px">
+              <img src="page-06.jpg" width="700px" height="1000px">
+              <img src="page-07.jpg" width="700px" height="1000px">
+              <img src="page-08.jpg" width="700px" height="1000px">
+              <img src="page-09.jpg" width="700px" height="1000px">
+              <img src="page-10.jpg" width="700px" height="1000px">
+              <img src="page-11.jpg" width="700px" height="1000px">
+              <img src="page-12.jpg" width="700px" height="1000px">
+              <img src="page-13.jpg" width="700px" height="1000px">
+              <img src="page-14.jpg" width="700px" height="1000px">
+              <img src="page-15.jpg" width="700px" height="1000px">
+              <img src="page-16.jpg" width="700px" height="1000px">
+              <img src="page-17.jpg" width="700px" height="1000px">
+              <img src="page-18.jpg" width="700px" height="1000px">
+              <img src="page-19.jpg" width="700px" height="1000px">
+              <img src="page-20.jpg" width="700px" height="1000px">  
+            </button>
+            <button class="rainbow-btn chapter-btn "onclick="window.location.href='second-edition.html'">
+              2nd EDITION
+          </button>
+          </nav>
+
+          <div id="chapterText">
+            <h2 class="content-heading">Faith Beyond the Stage</h2>
+            <p>
+              Faith is a source of hope, purpose, strength, and meaning in a
+              changing world. Life can bring disappointment and uncertainty, but
+              difficult seasons do not have to determine our future.
+            </p>
+            <p>The message encourages readers to:</p>
+            <ul class="faith-list">
+              <li>Trust God and remain hopeful.</li>
+              <li>Show kindness, compassion, and forgiveness.</li>
+              <li>Discover and pursue their God-given purpose.</li>
+              <li>Learn and grow through difficult experiences.</li>
+              <li>Remember that mistakes do not define an entire life.</li>
+              <li>Keep praying, believing, loving, and moving forward.</li>
+              <li>No risk no reward</li>
+            </ul>
+            <p>
+              <strong>Main message:</strong> Your story is still being written.
+              Faith can bring hope, courage, peace, and the possibility of a new
+              beginning. 🙏✨
+            </p>
+          </div>
+
+          <div class="donate-wrap">
+            <button class="rainbow-btn" id="donateToggle">
+              Donate
+            </button>
+              <p class="donate-subtext">if you would like to support this magazine, please consider making a financial support to make it possible for us to continue to share stories, reflections, and encouragement with our readers. Your support is greatly appreciated!</p>
+            
+
+            <div class="donation-form" id="donationForm" style="display: none">
+              <dl class="donation-info">
+                <dt>Account Name</dt>
+                <dd>Christy Muri Bobby</dd>
+                <dt>Account Number</dt>
+                <dd>2038925090</dd>
+                <dt>Bank Name</dt>
+                <dd>United Bank of Africa (UBA)</dd>
+              </dl>
+
+              <div class="amount-row">
+                <div class="form-row">
+                  <label for="donationAmount">Amount (optional)</label>
+                  <input
+                    type="number"
+                    id="donationAmount"
+                    placeholder="0.00"
+                    min="0"
+                    step="0.01"
+                  />
+                </div>
+                <div class="form-row">
+                  <label for="currencyType">Currency</label>
+                  <select id="currencyType">
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="GBP">GBP</option>
+                    <option value="NGN">NGN</option>
+                  </select>
+                </div>
+              </div>
+
+              <button class="rainbow-btn" id="donateSubmit">
+                Confirm Donation
+              </button>
+              <p class="status" id="donationStatus"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Subscription section -->
+        <div id="subscriptionSection" style="display: none">
+          <h2 class="content-heading">Subscribe</h2>
+          <p>
+            Join our mailing list and never miss a new chapter, reflection, or
+            story.
+          </p>
+          <div class="action-row">
+            <input
+              type="email"
+              id="emailInput"
+              class="email-input"
+              placeholder="you@example.com"
+              aria-label="Email address"
+            />
+            <button class="rainbow-btn" id="subscribeButton">Subscribe</button>
+          </div>
+          <p class="status" id="statusMsg"></p>
+        </div>
+      </article>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

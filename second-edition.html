@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Second Edition — Stay Tuned</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,500&family=Space+Grotesk:wght@400;500&display=swap");
+
+      :root {
+        --ink: #0e0d0b;
+        --paper: #f2ecdd;
+        --red: #b23327;
+        --brass: #c9a227;
+        --charcoal: #2b2822;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--ink);
+        overflow: hidden;
+        font-family: "Space Grotesk", sans-serif;
+      }
+
+      .stage {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background:
+          radial-gradient(
+            ellipse at 50% 20%,
+            rgba(201, 162, 39, 0.08),
+            transparent 55%
+          ),
+          var(--ink);
+      }
+
+      .frame {
+        position: relative;
+        width: min(90vw, 405px);
+        aspect-ratio: 9/16;
+        background:
+          linear-gradient(
+            180deg,
+            rgba(6, 20, 10, 0.55) 0%,
+            rgba(6, 20, 10, 0.75) 55%,
+            rgba(4, 14, 7, 0.9) 100%
+          ),
+          radial-gradient(circle at 18% 12%, #2f6b3a 0%, transparent 42%),
+          radial-gradient(circle at 85% 8%, #245c33 0%, transparent 38%),
+          radial-gradient(circle at 90% 90%, #1c4a2a 0%, transparent 45%),
+          radial-gradient(circle at 8% 92%, #1f5230 0%, transparent 42%),
+          #0f2415;
+        border: 1px solid rgba(242, 236, 221, 0.14);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 6% 7%;
+      }
+
+      .foliage {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        opacity: 0;
+        animation: fadeUp 1.4s ease forwards 0.1s;
+      }
+      .foliage svg {
+        width: 100%;
+        height: 100%;
+      }
+
+      .frame > *:not(.foliage) {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* faint rule grid, editorial texture */
+      .frame::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          rgba(242, 236, 221, 0.05) 1px,
+          transparent 1px
+        );
+        background-size: 100% 12.5%;
+        pointer-events: none;
+        opacity: 0;
+        animation: gridIn 1.2s ease forwards 0.2s;
+      }
+
+      @keyframes gridIn {
+        to {
+          opacity: 1;
+        }
+      }
+
+      .top-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: clamp(9px, 2.4vw, 11px);
+        letter-spacing: 0.14em;
+        color: rgba(242, 236, 221, 0.55);
+        opacity: 0;
+        transform: translateY(-6px);
+        animation: fadeDown 0.6s ease forwards 0.15s;
+      }
+
+      @keyframes fadeDown {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .masthead-wrap {
+        text-align: center;
+        position: relative;
+      }
+
+      .masthead {
+        font-family: "Fraunces", serif;
+        font-weight: 600;
+        font-size: clamp(26px, 8.6vw, 40px);
+        color: var(--paper);
+        line-height: 1.04;
+        letter-spacing: -0.005em;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        row-gap: 2px;
+        overflow: hidden;
+      }
+
+      .masthead .word {
+        display: flex;
+        overflow: hidden;
+        margin: 0 0.14em;
+      }
+
+      .masthead .word span {
+        display: inline-block;
+        transform: translateY(105%);
+        animation: riseUp 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        background: linear-gradient(
+          90deg,
+          #e4402f 0%,
+          #f2a31c 16%,
+          #f4d023 32%,
+          #4fae4d 50%,
+          #2c8fd6 66%,
+          #5b4fcf 82%,
+          #a63fbf 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        background-size: 340% 100%;
+        background-position: calc(var(--i, 0) * 12%) 0;
+      }
+
+      @keyframes riseUp {
+        to {
+          transform: translateY(0);
+        }
+      }
+
+      .rule {
+        width: 34px;
+        height: 2px;
+        background: var(--red);
+        margin: 14px auto 0;
+        transform: scaleX(0);
+        transform-origin: center;
+        animation: growRule 0.5s ease forwards 1.05s;
+      }
+
+      @keyframes growRule {
+        to {
+          transform: scaleX(1);
+        }
+      }
+
+      .center-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+      }
+
+      .issue-no {
+        font-family: "Fraunces", serif;
+        font-style: italic;
+        font-weight: 300;
+        color: transparent;
+        -webkit-text-stroke: 1px rgba(242, 236, 221, 0.5);
+        font-size: clamp(90px, 34vw, 168px);
+        line-height: 0.8;
+        opacity: 0;
+        transform: scale(0.85);
+        animation: issuePop 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards 1.3s;
+      }
+
+      @keyframes issuePop {
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .caption {
+        font-size: clamp(10px, 2.6vw, 12px);
+        letter-spacing: 0.16em;
+        color: var(--brass);
+        text-align: center;
+        opacity: 0;
+        animation: fadeUp 0.6s ease forwards 2s;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .bottom-block {
+        text-align: center;
+      }
+
+      .stay-tuned {
+        font-family: "Fraunces", serif;
+        font-style: italic;
+        font-size: clamp(15px, 4.4vw, 20px);
+        color: var(--paper);
+        opacity: 0;
+        animation: fadeUp 0.7s ease forwards 2.35s;
+      }
+
+      .divider-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 10px;
+        opacity: 0;
+        animation: fadeUp 0.6s ease forwards 2.6s;
+      }
+
+      .divider-row .line {
+        flex: 1;
+        height: 1px;
+        background: rgba(242, 236, 221, 0.22);
+      }
+
+      .divider-row .label {
+        font-size: clamp(8.5px, 2.2vw, 10px);
+        letter-spacing: 0.16em;
+        color: rgba(242, 236, 221, 0.55);
+        white-space: nowrap;
+      }
+
+      .pulse-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--red);
+        display: inline-block;
+        margin-right: 6px;
+        animation: pulse 1.4s ease-in-out infinite 3s;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.25;
+        }
+      }
+
+      .corner {
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        border: 1px solid rgba(242, 236, 221, 0.35);
+        opacity: 0;
+        animation: fadeUp 0.5s ease forwards 0.5s;
+      }
+      .corner.tl {
+        top: 16px;
+        left: 16px;
+        border-right: none;
+        border-bottom: none;
+      }
+      .corner.tr {
+        top: 16px;
+        right: 16px;
+        border-left: none;
+        border-bottom: none;
+      }
+      .corner.bl {
+        bottom: 16px;
+        left: 16px;
+        border-right: none;
+        border-top: none;
+      }
+      .corner.br {
+        bottom: 16px;
+        right: 16px;
+        border-left: none;
+        border-top: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stage">
+      <div class="frame" id="frame">
+        <div class="foliage" aria-hidden="true">
+          <svg
+            viewBox="0 0 405 720"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="xMidYMid slice"
+          >
+            <g fill="#3E8B4E" opacity="0.55">
+              <path
+                d="M-10 40 C 40 -10, 90 -10, 110 40 C 90 20, 50 20, -10 40 Z"
+              />
+              <path
+                d="M-20 70 C 30 30, 80 40, 95 90 C 70 60, 30 55, -20 70 Z"
+              />
+              <path
+                d="M300 0 C 330 30, 340 70, 320 110 C 315 75, 300 45, 280 20 Z"
+              />
+              <path
+                d="M340 10 C 380 30, 400 60, 395 100 C 380 70, 360 45, 330 30 Z"
+              />
+            </g>
+            <g fill="#276B39" opacity="0.5">
+              <path
+                d="M-15 60 C 25 20, 65 25, 85 65 C 60 45, 25 45, -15 60 Z"
+              />
+              <path
+                d="M320 20 C 355 45, 365 80, 350 115 C 340 85, 325 55, 300 35 Z"
+              />
+              <path
+                d="M-30 640 C 20 590, 70 590, 95 635 C 65 615, 25 615, -30 640 Z"
+              />
+              <path
+                d="M-10 690 C 40 650, 90 655, 110 700 C 80 680, 35 680, -10 690 Z"
+              />
+              <path
+                d="M310 680 C 345 640, 390 640, 415 685 C 380 665, 340 665, 310 680 Z"
+              />
+            </g>
+            <g fill="#4FAE4D" opacity="0.4">
+              <path d="M0 20 C 45 -15, 85 5, 95 45 C 65 20, 30 15, 0 20 Z" />
+              <path
+                d="M350 650 C 390 615, 410 640, 405 690 C 390 665, 370 655, 350 650 Z"
+              />
+              <path
+                d="M-25 610 C 15 575, 55 585, 65 620 C 40 605, 5 600, -25 610 Z"
+              />
+            </g>
+            <g stroke="#5FC463" stroke-width="1.5" fill="none" opacity="0.35">
+              <path d="M0 45 Q 50 15 105 42" />
+              <path d="M300 45 Q 350 15 400 55" />
+              <path d="M-10 630 Q 45 595 100 638" />
+              <path d="M305 650 Q 360 610 410 685" />
+            </g>
+          </svg>
+        </div>
+
+        <div class="corner tl"></div>
+        <div class="corner tr"></div>
+        <div class="corner bl"></div>
+        <div class="corner br"></div>
+
+        <div class="top-row" style="justify-content: center">
+          <span>design as a companion to give a renewing hope</span>
+        </div>
+
+        <div class="center-block">
+          <div class="masthead-wrap">
+            <div class="masthead" id="masthead"></div>
+            <div class="rule"></div>
+          </div>
+          <div class="issue-no">02</div>
+          <div class="caption">EDITION</div>
+        </div>
+
+        <div class="bottom-block">
+          <div class="stay-tuned">Stay tuned.</div>
+          <div class="divider-row">
+            <span class="label"
+              ><span class="pulse-dot"></span>SECOND EDITION</span
+            >
+            <span class="line"></span>
+            <span class="label">COMING SOON</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const words = ["ROLLING", "STONE"];
+      const el = document.getElementById("masthead");
+      let i = 0;
+      words.forEach((word) => {
+        const wordEl = document.createElement("span");
+        wordEl.className = "word";
+        [...word].forEach((ch) => {
+          const span = document.createElement("span");
+          span.textContent = ch;
+          span.style.animationDelay = 0.35 + i * 0.045 + "s";
+          span.style.setProperty("--i", i);
+          wordEl.appendChild(span);
+          i++;
+        });
+        el.appendChild(wordEl);
+      });
+    </script>
+  </body>
+</html>
